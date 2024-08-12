@@ -62,7 +62,7 @@ jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = 
 android-library = { id = "com.android.library", version.ref = "agp" }
 org-jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics-plugins" }
-android-gms = { id = "com.google.gms.google-services", version.ref = "google-gms" }
+android-gms-plugin = { id = "com.google.gms.google-services", version.ref = "google-gms" }
 navigation-plugin = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
 perf-plugin = { id = "com.google.firebase.firebase-perf", version.ref = "perf-plugin" }
 distribution-plugin = { id = "com.google.firebase.appdistribution", version.ref = "distribution-plugin" }
