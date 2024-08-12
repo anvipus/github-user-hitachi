@@ -14,6 +14,11 @@ retrofit = "2.11.0"
 crashlytics-plugins = "3.0.2"
 firebase-bom = "33.1.0"
 google-gms = "4.4.2"
+legacy-support-v4 = "1.0.0"
+navigation = "2.7.7"
+moshi_con = "2.8.1"
+perf-plugin = "1.4.2"
+distribution-plugin = "5.0.0"
 compile = "34"
 target = "34"
 minimum = "21"
@@ -36,7 +41,15 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigation" }
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
+
+
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "moshi_con" }
+
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
 firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics" }
 firebase-crashlytics-ktx = { module = "com.google.firebase:firebase-crashlytics" }
@@ -50,4 +63,7 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 org-jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics-plugins" }
 android-gms = { id = "com.google.gms.google-services", version.ref = "google-gms" }
+navigation-plugin = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
+perf-plugin = { id = "com.google.firebase.firebase-perf", version.ref = "perf-plugin" }
+distribution-plugin = { id = "com.google.firebase.appdistribution", version.ref = "distribution-plugin" }
 

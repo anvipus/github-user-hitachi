@@ -33,22 +33,35 @@ android {
 }
 
 dependencies {
+    //android sdk
     api(libs.androidx.core.ktx)
     api(libs.androidx.lifecycle.runtime.ktx)
     api(libs.androidx.appcompat)
     api(libs.material)
-    api(libs.androidx.ui)
-    api(libs.androidx.ui.graphics)
-    api(libs.androidx.ui.tooling.preview)
+    api(libs.navigation.ui.ktx)
+    api(libs.navigation.runtime.ktx)
+    api(libs.navigation.fragment.ktx)
+
+    // firebase
     api(platform(libs.firebase.bom))
     api(libs.firebase.crashlytics.ktx)
     api(libs.firebase.analytics.ktx)
     api(libs.firebase.messaging.ktx)
     api(libs.firebase.perf.ktx)
+
+    //compose
     api(libs.androidx.activity.compose)
     api(platform(libs.androidx.compose.bom))
     api(libs.androidx.material3)
+    api(libs.androidx.ui.tooling.preview)
+    api(libs.androidx.ui)
+    api(libs.androidx.ui.graphics)
+
+    //retrofit
     api(libs.retrofit)
+    api(libs.retrofit.converter.moshi)
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

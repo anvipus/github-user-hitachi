@@ -6,4 +6,7 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.kapt) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.android.gms) apply false
+    alias(libs.plugins.navigation.plugin) apply false
+    alias(libs.plugins.perf.plugin) apply false
+    alias(libs.plugins.distribution.plugin) apply false
 }
