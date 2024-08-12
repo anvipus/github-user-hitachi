@@ -41,6 +41,8 @@ dependencies {
     api(libs.navigation.ui.ktx)
     api(libs.navigation.runtime.ktx)
     api(libs.navigation.fragment.ktx)
+    api(libs.recycler.view)
+    api(libs.viewpager)
 
     // firebase
     api(platform(libs.firebase.bom))
