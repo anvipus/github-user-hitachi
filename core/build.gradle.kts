@@ -8,6 +8,10 @@ android {
     namespace = "com.anvipus.core"
     compileSdk = 34
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         minSdk = 21
 
@@ -16,12 +20,21 @@ android {
     }
 
     buildTypes {
+        debug {
+            val KUNCI_GARAM: String by project
+            isMinifyEnabled = false
+            buildConfigField("String", "KUNCI_GARAM", KUNCI_GARAM)
+            resValue("string", "app_name_config", "DEV Android Explore")
+        }
         release {
+            val KUNCI_GARAM: String by project
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "KUNCI_GARAM", KUNCI_GARAM)
+            resValue("string", "app_name_config", "Android Explore")
         }
     }
     compileOptions {
