@@ -42,6 +42,8 @@ dependencies {
     api(libs.androidx.lifecycle.common.java8)
     kapt(libs.androidx.lifecycle.common.java8)
     api(libs.androidx.appcompat)
+    api(libs.androidx.worker)
+    api(libs.androidx.paging)
     api(libs.material)
     api(libs.navigation.ui.ktx)
     api(libs.navigation.runtime.ktx)
@@ -107,6 +109,12 @@ dependencies {
     api(libs.camera.camera2)
     api(libs.camera.lifecycle)
     api(libs.camera.view)
+
+    //ml kit barcode scanning
+    api(libs.ml.kit.barcode.scanning)
+
+    //timber
+    api(libs.timber)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
