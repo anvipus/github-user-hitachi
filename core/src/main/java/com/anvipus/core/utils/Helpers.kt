@@ -17,14 +17,9 @@ import android.util.DisplayMetrics
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.webkit.WebView
-import com.google.firebase.dynamiclinks.ktx.dynamicLinks
 import com.google.firebase.ktx.Firebase
-import com.spinlibrary.BuildConfig
-import com.spinlibrary.model.BpjsTkMonth
-import com.spinlibrary.model.months
-import com.spinlibrary.util.state.AccountManager
-import com.spinlibrary.vo.CampaignData
-import com.spinlibrary.vo.menu.DataDetail
+import com.anvipus.core.BuildConfig
+import com.anvipus.core.models.months
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -61,23 +56,6 @@ object Helpers {
                 "HmacMD5"
             )
             Timber.d("hmac result: ${result}")
-            return result
-        }catch (e: Exception){
-            e.printStackTrace()
-        }
-        return ""
-    }
-
-    fun getHashUltraVoucherToken(value: String): String? {
-        try {
-            val result = hmacDigest(
-                encodeToString(value.toByteArray(), Base64.DEFAULT).trim(),
-                BuildConfig.KUNCI_GARAM_UV,
-                "HmacMD5"
-            )
-            Timber.d("=== hashUV Log ===")
-            Timber.d("hashUV : ${result}")
-            Timber.d("=== End hashUV Log ===")
             return result
         }catch (e: Exception){
             e.printStackTrace()
@@ -165,32 +143,6 @@ object Helpers {
         } catch (e: NoSuchAlgorithmException) {
         }
         return digest
-    }
-
-    fun readJSONCampaignFile(mContext: Context, am: AccountManager): String? {
-        try {
-            if(!BuildConfig.CAMPAIGN_MODE.toBoolean()){
-                if(am.getString(Constants.KEY_CAMPAIGN_CODE).isNullOrEmpty()){
-                    return null
-                }
-                else{
-                    return am.getString(Constants.KEY_CAMPAIGN_CODE)
-                }
-            }else{
-                val moshi = Moshi.Builder().build()
-                val adapter = moshi.adapter(CampaignData::class.java)
-                val file = "campaign_json.json"
-                val jsonFile = mContext.assets.open(file).bufferedReader().use { it.readText() }
-                am.putString(Constants.KEY_CAMPAIGN_CODE,adapter.fromJson(jsonFile)?.campaignCode)
-                return adapter.fromJson(jsonFile)?.campaignCode
-            }
-
-
-        }catch (e:Exception){
-            e.printStackTrace()
-            return null
-        }
-
     }
 
     fun verifyInstallerId(context: Context): Boolean {
@@ -521,30 +473,6 @@ object Helpers {
         return sdf.format(lastDayOfMonth)
     }
 
-    fun getBpjsTkMonth(): MutableList<BpjsTkMonth>{
-        val monthList: MutableList<BpjsTkMonth> = ArrayList()
-        val month1 = BpjsTkMonth()
-        month1.monthNumber = 1
-        month1.monthString = "1 Bulan"
-        monthList.add(month1)
-
-        val month2 = BpjsTkMonth()
-        month2.monthNumber = 3
-        month2.monthString = "3 Bulan"
-        monthList.add(month2)
-
-        val month3 = BpjsTkMonth()
-        month3.monthNumber = 6
-        month3.monthString = "6 Bulan"
-        monthList.add(month3)
-
-        val month4 = BpjsTkMonth()
-        month4.monthNumber = 12
-        month4.monthString = "12 Bulan"
-        monthList.add(month4)
-        return monthList
-    }
-
     fun getNextMonthDays(param: Int): Date? {
         val cl: Calendar = Calendar.getInstance()
         var displayedDate = Date()
@@ -660,25 +588,6 @@ object Helpers {
         bundle.putString(("timestamp"), timestamp)
         bundle.putString(("fingerprint"), "${userId}_android_${timestamp}_${env}_${page}")
         return bundle
-    }
-
-    fun handleDynamicLink(intent: Intent, mActivity: Activity): String? {
-        var url: String? = null
-        Firebase.dynamicLinks
-            .getDynamicLink(intent)
-            .addOnSuccessListener(mActivity) { pendingDynamicLinkData ->
-                try {
-                    url = pendingDynamicLinkData.link.toString()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-
-            }
-            .addOnFailureListener(mActivity) { e ->
-                Timber.w("getDynamicLink:onFailure $e")
-            }
-
-        return url
     }
 
     //0: day, 1: hour, 2: minute, 3: second
@@ -810,21 +719,6 @@ object Helpers {
 
     private fun textWidth(str: String): Int {
         return (str.length - str.replace(NON_THIN.toRegex(), "").length / 2) as Int
-    }
-    fun generateYearBackward(range: Int):MutableList<DataDetail>{
-        val monthList: MutableList<DataDetail> = ArrayList()
-
-        val calendar = Calendar.getInstance()
-        val yearNow = calendar[Calendar.YEAR]
-
-        val yearStart = yearNow-range
-
-        for(x in yearStart..yearNow){
-            val years = DataDetail(displayName = x.toString(), value = x.toString(),label = null,data = null)
-            monthList.add(years)
-        }
-
-        return monthList
     }
 
     fun hasInternet(context: Context): Boolean {
