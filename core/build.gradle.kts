@@ -44,6 +44,7 @@ dependencies {
     api(libs.androidx.appcompat)
     api(libs.androidx.worker)
     api(libs.androidx.paging)
+    api(libs.androidx.security.crypto)
     api(libs.material)
     api(libs.navigation.ui.ktx)
     api(libs.navigation.runtime.ktx)
@@ -57,6 +58,9 @@ dependencies {
     api(libs.firebase.analytics.ktx)
     api(libs.firebase.messaging.ktx)
     api(libs.firebase.perf.ktx)
+    api(libs.firebase.appcheck.playintegrity)
+    api(libs.firebase.appcheck.debug)
+    api(libs.firebase.appcheck.ktx)
 
     //compose
     api(libs.androidx.activity.compose)
@@ -95,6 +99,9 @@ dependencies {
     //room
     api(libs.room)
 
+    //jwt
+    api(libs.jwt.decode)
+
     //biometric
     api(libs.biometric)
 
@@ -115,6 +122,11 @@ dependencies {
 
     //timber
     api(libs.timber)
+
+    //play service
+    api(libs.play.services.auth)
+    api(libs.play.services.location)
+    api(libs.play.services.auth.api.phone)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

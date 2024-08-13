@@ -36,7 +36,12 @@ camerax = "1.3.4"
 barcode_scanning_mlkit = "17.3.0"
 timber = "5.0.1"
 worker = "2.9.1"
-paging = "3.1.1"
+paging = "3.3.2"
+security_crypto = "1.1.0-alpha06"
+jwt_decode = "2.0.2"
+play-services-auth = "20.3.0"
+play-services-auth-api-phone = "18.0.1"
+play-services-location = "[17.0.0, 17.99.99]"
 compile = "34"
 target = "34"
 minimum = "21"
@@ -65,6 +70,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-constraint = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraint" }
 androidx-worker = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "worker" }
 androidx-paging = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "paging" }
+androidx-security-crypto = { group = "androidx.security", name = "security-crypto", version.ref = "security_crypto" }
 
 navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigation" }
 navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
@@ -104,7 +110,13 @@ shimmer = { group = "com.facebook.shimmer", name = "shimmer", version.ref = "shi
 
 ml-kit-barcode-scanning = { group = "com.google.mlkit", name = "barcode-scanning", version.ref = "barcode_scanning_mlkit" }
 
+jwt-decode = { group = "com.auth0.android", name = "jwtdecode", version.ref = "jwt_decode" }
+
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+
+play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "play-services-auth" }
+play-services-auth-api-phone = { group = "com.google.android.gms", name = "play-services-auth-api-phone", version.ref = "play-services-auth-api-phone" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "play-services-location" }
 
 camera-core = { group = "androidx.camera", name = "camera-core", version.ref = "camerax" }
 camera-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "camerax" }
@@ -116,6 +128,9 @@ firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics" }
 firebase-crashlytics-ktx = { module = "com.google.firebase:firebase-crashlytics" }
 firebase-messaging-ktx = { module = "com.google.firebase:firebase-messaging" }
 firebase-perf-ktx = { module = "com.google.firebase:firebase-perf" }
+firebase-appcheck-playintegrity = { module = "com.google.firebase:firebase-appcheck-playintegrity" }
+firebase-appcheck-debug = { module = "com.google.firebase:firebase-appcheck-debug" }
+firebase-appcheck-ktx = { module = "com.google.firebase:firebase-appcheck-ktx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
