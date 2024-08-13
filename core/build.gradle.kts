@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.kapt)
 }
 
 android {
@@ -36,6 +37,10 @@ dependencies {
     //android sdk
     api(libs.androidx.core.ktx)
     api(libs.androidx.lifecycle.runtime.ktx)
+    api(libs.androidx.lifecycle.viewmodel.ktx)
+    api(libs.androidx.lifecycle.livedata.ktx)
+    api(libs.androidx.lifecycle.common.java8)
+    kapt(libs.androidx.lifecycle.common.java8)
     api(libs.androidx.appcompat)
     api(libs.material)
     api(libs.navigation.ui.ktx)
@@ -58,6 +63,7 @@ dependencies {
     api(libs.androidx.ui.tooling.preview)
     api(libs.androidx.ui)
     api(libs.androidx.ui.graphics)
+    api(libs.androidx.constraint)
 
     //retrofit
     api(libs.retrofit)
@@ -87,6 +93,20 @@ dependencies {
     //room
     api(libs.room)
 
+    //biometric
+    api(libs.biometric)
+
+    //lottie
+    api(libs.lottie)
+
+    //shimmer
+    api(libs.shimmer)
+
+    //camerax
+    api(libs.camera.core)
+    api(libs.camera.camera2)
+    api(libs.camera.lifecycle)
+    api(libs.camera.view)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
