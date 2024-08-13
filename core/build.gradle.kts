@@ -63,6 +63,30 @@ dependencies {
     api(libs.retrofit)
     api(libs.retrofit.converter.moshi)
 
+    //moshi
+    api(libs.moshi)
+    api(libs.moshi.codegen)
+
+    // okhttp
+    api(platform(libs.okhttp))
+    api(libs.okhttp.module)
+    api(libs.okhttp.logging.interceptor)
+
+    //glide
+    api(libs.glide)
+    api(libs.glide.okhttp3)
+
+    //gson
+    api(libs.gson)
+
+    //dagger
+    api(libs.dagger)
+    api(libs.dagger.android)
+    api(libs.dagger.android.support)
+
+    //room
+    api(libs.room)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
