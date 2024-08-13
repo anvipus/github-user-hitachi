@@ -46,8 +46,11 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.*
+import androidx.databinding.ObservableField
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.Locale
 import kotlin.math.roundToInt
 
 fun Context.resColor(res: Int): Int = ContextCompat.getColor(this, res)
@@ -535,14 +538,6 @@ fun EditText.scanQrisAmountWatcher(tl: TextInputLayout? = null, minimum: Double 
     })
 }
 
-
-fun ImageView.toGrayscale(){
-    val matrix = ColorMatrix().apply {
-        setSaturation(0f)
-    }
-    colorFilter = ColorMatrixColorFilter(matrix)
-}
-
 fun String.cleanString() = this.replace("[^0-9]".toRegex(), "")
 
 fun String.phoneString(): String{
@@ -704,4 +699,71 @@ fun String.toBulletSpan(): Spanned {
     val spannableString = SpannableString(this)
     spannableString.setSpan(BulletSpan(24), 0, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
     return spannableString
+}
+
+fun Boolean?.orFalse(): Boolean = this ?: false
+fun Boolean?.orTrue(): Boolean = this ?: true
+
+fun Any?.toDoubleOrZero(): Double {
+    return toString().toDoubleOrNull() ?: 0.0
+}
+
+fun CharSequence?.toDoubleOrZeroV2(): Double {
+    return this?.filter { it.isDigit() }.toString().toDoubleOrNull() ?: 0.0
+}
+
+fun Any?.toIntOrZero(): Int {
+    return try {
+        toDoubleOrZero().roundToInt().orZero()
+    } catch (e: Exception) {
+        toString().filter { it.isDigit() }.toIntOrNull() ?: 0
+    }
+}
+
+fun Int?.orZero(): Int = this ?: 0
+fun Int?.orOne(): Int = this ?: 1
+
+fun Int?.decrease(default: Int = 1): Int = (this ?: default) - 1
+fun Int?.increase(default: Int = 0): Int = (this ?: default) + 1
+
+fun Int?.length(): Int = try {
+    orZero().toString().length
+} catch (e: Exception) {
+    0
+}
+
+fun String?.defaultUppercase(): String = orEmpty().uppercase()
+fun String?.ifEmpty(replaceWith: String): String = if (isNullOrEmpty()) replaceWith else orEmpty()
+fun String?.isNumeric(): Boolean = orEmpty().matches("-?\\d+(\\.\\d+)?".toRegex())
+fun String?.containSpecialCharacters(): Boolean = orEmpty().matches("[a-zA-Z0-9 .',-]*".toRegex()).not()
+
+fun String?.isValidDate(pattern: String = "dd-MM-yyyy"): Boolean {
+    val formatter: DateFormat = SimpleDateFormat(pattern, Locale.getDefault())
+
+    return try {
+        formatter.isLenient = false
+        formatter.parse(orEmpty())
+        true
+    } catch (e: Exception) {
+        false
+    }
+}
+
+fun String?.contain(data: String?): Boolean = orEmpty().contains(data.orEmpty(), ignoreCase = true)
+fun String?.isNotEmpty(): Boolean = this?.isNotBlank() ?: false
+
+fun List<String>.require(index: Int, default: Int = 1): Int {
+    return requireOrNull(index) ?: default
+}
+
+fun List<String>.requireOrNull(index: Int): Int? {
+    return try {
+        get(index).toIntOrNull()
+    } catch (e: Exception) {
+        null
+    }
+}
+
+fun ObservableField<Boolean>.toggle() {
+    set(!get().orFalse())
 }
