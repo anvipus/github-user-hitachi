@@ -31,6 +31,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.google.android.material.textfield.TextInputLayout
 import com.anvipus.core.R
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.EncodeHintType
+import com.google.zxing.MultiFormatWriter
+import com.google.zxing.WriterException
+import com.google.zxing.common.BitMatrix
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -554,6 +559,63 @@ fun String.isValidPhoneV2(): Boolean{
 
 fun String.isValidNumber(): Boolean{
     return this.matches("^8?\\d{8,}".toRegex())
+}
+
+@Throws(WriterException::class)
+fun ImageView.loadQRCode(value: String?) {
+    fun guessAppropriateEncoding(contents: CharSequence): String? {
+        for (element in contents) {
+            if (element.toInt() > 0xFF) {
+                return "UTF-8"
+            }
+        }
+        return null
+    }
+
+    val black = -0x1000000
+    val ghostWhite = -0x60501
+
+    if (value.isNullOrEmpty()) {
+        return
+    }
+
+    val manager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    val display = manager.defaultDisplay
+    val point = Point()
+    display.getSize(point)
+    val width = point.x
+    val height = point.y
+    val smallerDimension = if (width < height) width else height
+
+    var hints: MutableMap<EncodeHintType?, Any?>? = null
+    val encoding = guessAppropriateEncoding(value)
+    if (encoding != null) {
+        hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
+        hints[EncodeHintType.CHARACTER_SET] = encoding
+    }
+    val writer = MultiFormatWriter()
+    val result: BitMatrix
+    result = try {
+        writer.encode(value, BarcodeFormat.QR_CODE, smallerDimension, smallerDimension, hints)
+    } catch (iae: IllegalArgumentException) {
+        // Unsupported format
+        return
+    }
+    val width2 = result.width
+    val height2 = result.height
+    val pixels = IntArray(width2 * height2)
+    for (y in 0 until height2) {
+        val offset = y * width2
+        for (x in 0 until width2) {
+            pixels[offset + x] = if (result[x, y]) black else ghostWhite
+        }
+    }
+    val bitmap = Bitmap.createBitmap(
+        width2, height2,
+        Bitmap.Config.ARGB_8888
+    )
+    bitmap.setPixels(pixels, 0, width2, 0, 0, width2, height2)
+    setImageBitmap(bitmap)
 }
 
 fun Int.toNum(): String{

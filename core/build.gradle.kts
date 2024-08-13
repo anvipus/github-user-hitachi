@@ -136,6 +136,8 @@ dependencies {
     //timber
     api(libs.timber)
 
+    //zxing
+    api(libs.zxing)
 
     //play service
     api(libs.play.services.auth)

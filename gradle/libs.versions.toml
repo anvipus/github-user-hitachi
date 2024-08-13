@@ -41,6 +41,7 @@ jwt_decode = "2.0.2"
 play-services-auth = "21.2.0"
 play-services-auth-api-phone = "18.1.0"
 play-services-location = "21.3.0"
+zxing = "3.3.3"
 compile = "34"
 target = "34"
 minimum = "21"
@@ -112,6 +113,8 @@ ml-kit-barcode-scanning = { group = "com.google.mlkit", name = "barcode-scanning
 jwt-decode = { group = "com.auth0.android", name = "jwtdecode", version.ref = "jwt_decode" }
 
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+
+zxing = { group = "com.google.zxing", name = "core", version.ref = "zxing" }
 
 play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "play-services-auth" }
 play-services-auth-api-phone = { group = "com.google.android.gms", name = "play-services-auth-api-phone", version.ref = "play-services-auth-api-phone" }
