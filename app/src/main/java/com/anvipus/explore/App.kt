@@ -3,7 +3,7 @@ package com.anvipus.explore
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
-//import com.anvipus.explore.di.AppInjector
+import com.anvipus.explore.di.AppInjector
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -23,6 +23,6 @@ class App : Application(), HasAndroidInjector {
     override fun onCreate() {
         super.onCreate()
         context = this
-//        AppInjector.init(this)
+        AppInjector.init(this)
     }
 }

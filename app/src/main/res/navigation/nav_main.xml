@@ -6,7 +6,7 @@
     app:startDestination="@id/fragment_main">
     <fragment
         android:id="@+id/fragment_main"
-        android:name="com.anvipus.explore.ui.main.MainFragment"
+        android:name="com.anvipus.explore.ui.xml.MainFragment"
         android:label=""
         tools:layout="@layout/main_fragment">
     </fragment>
