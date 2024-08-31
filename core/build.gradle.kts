@@ -110,6 +110,7 @@ dependencies {
     //glide
     api(libs.glide)
     api(libs.glide.okhttp3)
+    kapt(libs.glide.compiler.kapt)
 
     //gson
     api(libs.gson)

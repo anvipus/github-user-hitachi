@@ -73,15 +73,12 @@ android {
 
 dependencies {
     api(project(":core"))
-    /*implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.material3)*/
-    kapt(libs.glide.compiler.kapt)
+
     kapt(libs.dagger.compiler.kapt)
     kapt(libs.dagger.android.processor.kapt)
-//    kapt(libs.moshi.kotlin.codegen.kapt)
-//    kapt(libs.room.compiler.kapt)
-//    kapt(libs.lifecycle.common.java8.kapt)
+    kapt(libs.moshi.kotlin.codegen.kapt)
+    kapt(libs.room.compiler.kapt)
+    kapt(libs.lifecycle.common.java8.kapt)
 
 
     testImplementation(libs.junit)

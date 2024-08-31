@@ -43,7 +43,7 @@ fun View.showIf(show: Boolean?, type: Int = 1) {
     }
 }
 
-/*fun ShapeableImageView.load(url: String?, placeholder: Int? = null, success: ((Boolean) -> Unit)? = null) {
+fun ShapeableImageView.load(url: String?, placeholder: Int? = null, success: ((Boolean) -> Unit)? = null) {
     GlideApp.with(context).load(url)
         .placeholder(placeholder ?: R.drawable.ic_placeholder)
         .error(placeholder ?: R.drawable.ic_placeholder)
@@ -70,9 +70,9 @@ fun View.showIf(show: Boolean?, type: Int = 1) {
                 return false
             }
         }).into(this)
-}*/
+}
 
-/*fun ShapeableImageView.loadV2(url: String?, success: ((Boolean) -> Unit)? = null) {
+fun ShapeableImageView.loadV2(url: String?, success: ((Boolean) -> Unit)? = null) {
     GlideApp.with(context).load(url)
         .placeholder(R.drawable.ic_placeholder)
         .error(R.drawable.ic_placeholder)
@@ -99,9 +99,9 @@ fun View.showIf(show: Boolean?, type: Int = 1) {
                 return false
             }
         }).into(this)
-}*/
+}
 
-/*fun ShapeableImageView.loadImageFromAsset(
+fun ShapeableImageView.loadImageFromAsset(
     url: Int?,
     placeholder: Int? = null,
     success: ((Boolean) -> Unit)? = null
@@ -132,4 +132,4 @@ fun View.showIf(show: Boolean?, type: Int = 1) {
                 return false
             }
         }).into(this)
-}*/
+}
