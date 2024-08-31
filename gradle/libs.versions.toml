@@ -47,6 +47,8 @@ ksp = "1.9.0-1.0.13"
 compile = "34"
 target = "34"
 minimum = "21"
+version-code = "1"
+version-name = "1.0.0"
 
 
 [libraries]

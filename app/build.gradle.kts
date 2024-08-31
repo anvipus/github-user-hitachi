@@ -7,14 +7,14 @@ plugins {
 
 android {
     namespace = "com.anvipus.explore"
-    compileSdk = 34
+    compileSdk = Integer.parseInt(libs.versions.compile.get())
 
     defaultConfig {
         applicationId = "com.anvipus.explore"
-        minSdk = 21
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = Integer.parseInt(libs.versions.minimum.get())
+        targetSdk = Integer.parseInt(libs.versions.target.get())
+        versionCode = Integer.parseInt(libs.versions.version.code.get())
+        versionName = libs.versions.version.name.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
