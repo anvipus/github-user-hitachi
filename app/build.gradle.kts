@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.kapt)
+    alias(libs.plugins.devtools.ksp)
 }
 
 android {
@@ -42,6 +44,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    dataBinding {
+        enable = true
+    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -71,6 +76,14 @@ dependencies {
     /*implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.material3)*/
+    kapt(libs.glide.compiler.kapt)
+    kapt(libs.dagger.compiler.kapt)
+    kapt(libs.dagger.android.processor.kapt)
+//    kapt(libs.moshi.kotlin.codegen.kapt)
+//    kapt(libs.room.compiler.kapt)
+//    kapt(libs.lifecycle.common.java8.kapt)
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

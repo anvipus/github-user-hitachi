@@ -24,7 +24,7 @@ viewpager = "1.1.0"
 glide = "4.14.2"
 okhttp = "4.10.0"
 gson = "2.10.1"
-dagger = "2.37"
+dagger = "2.52"
 room = "2.6.1"
 moshi = "1.14.0"
 biometric = "1.1.0"
@@ -41,7 +41,9 @@ jwt_decode = "2.0.2"
 play-services-auth = "21.2.0"
 play-services-auth-api-phone = "18.1.0"
 play-services-location = "21.3.0"
+chucker = "3.5.2"
 zxing = "3.3.3"
+ksp = "1.9.0-1.0.13"
 compile = "34"
 target = "34"
 minimum = "21"
@@ -79,6 +81,9 @@ navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx",
 recycler-view = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recycler-view" }
 
 viewpager = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager" }
+
+chucker-debug = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "chucker" }
+chucker-release = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "chucker" }
 
 
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
@@ -134,6 +139,13 @@ firebase-appcheck-playintegrity = { module = "com.google.firebase:firebase-appch
 firebase-appcheck-debug = { module = "com.google.firebase:firebase-appcheck-debug" }
 firebase-appcheck-ktx = { module = "com.google.firebase:firebase-appcheck-ktx" }
 
+glide-compiler-kapt = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
+dagger-compiler-kapt = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
+dagger-android-processor-kapt = { group = "com.google.dagger", name = "dagger-android-processor", version.ref = "dagger" }
+moshi-kotlin-codegen-kapt = { group = "com.squareup.moshi", name = "moshi-kotlin-codegen", version.ref = "moshi" }
+room-compiler-kapt = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+lifecycle-common-java8-kapt = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifecycle" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -144,4 +156,5 @@ android-gms-plugin = { id = "com.google.gms.google-services", version.ref = "goo
 navigation-plugin = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
 perf-plugin = { id = "com.google.firebase.firebase-perf", version.ref = "perf-plugin" }
 distribution-plugin = { id = "com.google.firebase.appdistribution", version.ref = "distribution-plugin" }
+devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 

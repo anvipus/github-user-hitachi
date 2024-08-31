@@ -154,6 +154,10 @@ dependencies {
     api(libs.play.services.location)
     api(libs.play.services.auth.api.phone)
 
+    //chucker
+    debugApi(libs.chucker.debug)
+    releaseApi(libs.chucker.release)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

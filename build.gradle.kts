@@ -9,4 +9,5 @@ plugins {
     alias(libs.plugins.navigation.plugin) apply false
     alias(libs.plugins.perf.plugin) apply false
     alias(libs.plugins.distribution.plugin) apply false
+    alias(libs.plugins.devtools.ksp) apply false
 }

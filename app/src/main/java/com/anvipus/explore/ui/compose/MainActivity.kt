@@ -1,4 +1,4 @@
-package com.anvipus.explore
+package com.anvipus.explore.ui.compose
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
