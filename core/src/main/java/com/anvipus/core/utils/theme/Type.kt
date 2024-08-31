@@ -1,4 +1,4 @@
-package com.anvipus.explore.ui.theme
+package com.anvipus.core.utils.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

@@ -7,10 +7,6 @@ android {
     namespace = "com.anvipus.explore"
     compileSdk = 34
 
-    buildFeatures {
-        buildConfig = true
-    }
-
     defaultConfig {
         applicationId = "com.anvipus.explore"
         minSdk = 21
@@ -50,6 +46,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
     composeOptions {

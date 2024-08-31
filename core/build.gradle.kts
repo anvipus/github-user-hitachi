@@ -8,8 +8,15 @@ android {
     namespace = "com.anvipus.core"
     compileSdk = 34
 
+    /*buildFeatures {
+        buildConfig = true
+    }*/
     buildFeatures {
         buildConfig = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
 
     defaultConfig {

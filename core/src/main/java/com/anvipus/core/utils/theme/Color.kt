@@ -1,4 +1,4 @@
-package com.anvipus.explore.ui.theme
+package com.anvipus.core.utils.theme
 
 import androidx.compose.ui.graphics.Color
 
