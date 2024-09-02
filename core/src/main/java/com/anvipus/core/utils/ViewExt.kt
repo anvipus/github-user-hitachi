@@ -48,24 +48,18 @@ fun ShapeableImageView.load(url: String?, placeholder: Int? = null, success: ((B
         .placeholder(placeholder ?: R.drawable.ic_placeholder)
         .error(placeholder ?: R.drawable.ic_placeholder)
         .listener(object : RequestListener<Drawable> {
-            override fun onLoadFailed(
-                e: GlideException?,
-                model: Any?,
-                target: Target<Drawable>?,
-                isFirstResource: Boolean
-            ): Boolean {
+            override fun onLoadFailed(p0: GlideException?, p1: Any?, p2: Target<Drawable>, p3: Boolean): Boolean {
                 success?.invoke(false)
                 return false
             }
 
             override fun onResourceReady(
-                resource: Drawable?,
-                model: Any?,
-                target: Target<Drawable>?,
-                dataSource: DataSource?,
-                isFirstResource: Boolean
+                p0: Drawable,
+                p1: Any,
+                p2: Target<Drawable>?,
+                p3: DataSource,
+                p4: Boolean
             ): Boolean {
-
                 success?.invoke(true)
                 return false
             }
@@ -77,24 +71,18 @@ fun ShapeableImageView.loadV2(url: String?, success: ((Boolean) -> Unit)? = null
         .placeholder(R.drawable.ic_placeholder)
         .error(R.drawable.ic_placeholder)
         .listener(object : RequestListener<Drawable> {
-            override fun onLoadFailed(
-                e: GlideException?,
-                model: Any?,
-                target: Target<Drawable>?,
-                isFirstResource: Boolean
-            ): Boolean {
+            override fun onLoadFailed(p0: GlideException?, p1: Any?, p2: Target<Drawable>, p3: Boolean): Boolean {
                 success?.invoke(false)
                 return false
             }
 
             override fun onResourceReady(
-                resource: Drawable?,
-                model: Any?,
-                target: Target<Drawable>?,
-                dataSource: DataSource?,
-                isFirstResource: Boolean
+                p0: Drawable,
+                p1: Any,
+                p2: Target<Drawable>?,
+                p3: DataSource,
+                p4: Boolean
             ): Boolean {
-
                 success?.invoke(true)
                 return false
             }
@@ -110,24 +98,18 @@ fun ShapeableImageView.loadImageFromAsset(
         .placeholder(placeholder ?: R.drawable.ic_placeholder)
         .error(placeholder ?: R.drawable.ic_placeholder)
         .listener(object : RequestListener<Drawable> {
-            override fun onLoadFailed(
-                e: GlideException?,
-                model: Any?,
-                target: Target<Drawable>?,
-                isFirstResource: Boolean
-            ): Boolean {
+            override fun onLoadFailed(p0: GlideException?, p1: Any?, p2: Target<Drawable>, p3: Boolean): Boolean {
                 success?.invoke(false)
                 return false
             }
 
             override fun onResourceReady(
-                resource: Drawable?,
-                model: Any?,
-                target: Target<Drawable>?,
-                dataSource: DataSource?,
-                isFirstResource: Boolean
+                p0: Drawable,
+                p1: Any,
+                p2: Target<Drawable>?,
+                p3: DataSource,
+                p4: Boolean
             ): Boolean {
-
                 success?.invoke(true)
                 return false
             }
