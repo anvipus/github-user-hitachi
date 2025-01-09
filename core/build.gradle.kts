@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.jetbrains.kotlin.kapt)
+    alias(libs.plugins.devtools.ksp)
+    alias(libs.plugins.navigation.plugin)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -48,11 +51,30 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    dataBinding {
+        enable = true
+    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    dataBinding {
-        enable = true
+    buildFeatures {
+        buildConfig = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/DEPENDENCIES.txt"
+            excludes += "/META-INF/LICENSE.txt"
+            excludes += "/META-INF/NOTICE.txt"
+            excludes += "/META-INF/NOTICE"
+            excludes += "/META-INF/LICENSE"
+            excludes += "/META-INF/DEPENDENCIES"
+            excludes += "/META-INF/license.txt"
+        }
     }
 }
 
@@ -64,6 +86,7 @@ dependencies {
     api(libs.androidx.lifecycle.livedata.ktx)
     api(libs.androidx.lifecycle.common.java8)
     kapt(libs.androidx.lifecycle.common.java8)
+    kapt(libs.lifecycle.common.java8.kapt)
     api(libs.androidx.appcompat)
     api(libs.androidx.worker)
     api(libs.androidx.paging)
@@ -101,6 +124,7 @@ dependencies {
     //moshi
     api(libs.moshi)
     api(libs.moshi.codegen)
+    kapt(libs.moshi.kotlin.codegen.kapt)
 
     // okhttp
     api(platform(libs.okhttp))

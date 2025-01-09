@@ -4,9 +4,19 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.kapt)
     alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.navigation.plugin)
+    id("kotlin-parcelize")
 }
 
 android {
+    signingConfigs {
+        create("config") {
+            keyAlias = "anvipus"
+            keyPassword = "douven77"
+            storeFile = file("./anvipus.jks")
+            storePassword = "douven77"
+            isV2SigningEnabled = true
+        }
+    }
     namespace = "com.anvipus.explore"
     compileSdk = Integer.parseInt(libs.versions.compile.get())
 
@@ -26,19 +36,29 @@ android {
     buildTypes {
         debug {
             val KUNCI_GARAM: String by project
+            val BASE_URL: String by project
+            val API_KEY: String by project
             isMinifyEnabled = false
             buildConfigField("String", "KUNCI_GARAM", KUNCI_GARAM)
+            buildConfigField("String", "BASE_URL", BASE_URL)
+            buildConfigField("String", "API_KEY", API_KEY)
             resValue("string", "app_name_config", "DEV Android Explore")
+            signingConfig = signingConfigs.getByName("config")
         }
         release {
             val KUNCI_GARAM: String by project
+            val BASE_URL: String by project
+            val API_KEY: String by project
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_URL", BASE_URL)
             buildConfigField("String", "KUNCI_GARAM", KUNCI_GARAM)
+            buildConfigField("String", "API_KEY", API_KEY)
             resValue("string", "app_name_config", "Android Explore")
+            signingConfig = signingConfigs.getByName("config")
         }
     }
     compileOptions {
