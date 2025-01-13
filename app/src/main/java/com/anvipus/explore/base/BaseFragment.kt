@@ -160,7 +160,7 @@ abstract class BaseFragment: Fragment() {
         } else {
             winParams?.flags = winParams!!.flags and bits.inv()
         }
-        win.attributes = winParams
+        win?.attributes = winParams
     }
 
 

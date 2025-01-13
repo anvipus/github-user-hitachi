@@ -5,25 +5,15 @@ plugins {
     alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.navigation.plugin)
     id("kotlin-parcelize")
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
     namespace = "com.anvipus.core"
-    compileSdk = 34
-
-    /*buildFeatures {
-        buildConfig = true
-    }*/
-    buildFeatures {
-        buildConfig = true
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
+    compileSdk = Integer.parseInt(libs.versions.compile.get())
 
     defaultConfig {
-        minSdk = 21
+        minSdk = Integer.parseInt(libs.versions.minimum.get())
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -48,21 +38,21 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     dataBinding {
         enable = true
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "21"
     }
     buildFeatures {
         buildConfig = true
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
     packaging {
         resources {
@@ -97,6 +87,7 @@ dependencies {
     api(libs.navigation.fragment.ktx)
     api(libs.recycler.view)
     api(libs.viewpager)
+    api(libs.androidx.constraint)
 
     // firebase
     api(platform(libs.firebase.bom))
@@ -115,7 +106,7 @@ dependencies {
     api(libs.androidx.ui.tooling.preview)
     api(libs.androidx.ui)
     api(libs.androidx.ui.graphics)
-    api(libs.androidx.constraint)
+    api(libs.androidx.constraintlayout.compose)
 
     //retrofit
     api(libs.retrofit)

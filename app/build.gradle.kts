@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.navigation.plugin)
     id("kotlin-parcelize")
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -62,21 +63,21 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     dataBinding {
         enable = true
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "21"
     }
     buildFeatures {
         buildConfig = true
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
     packaging {
         resources {
@@ -97,8 +98,8 @@ dependencies {
 
     kapt(libs.dagger.compiler.kapt)
     kapt(libs.dagger.android.processor.kapt)
-    kapt(libs.moshi.kotlin.codegen.kapt)
-    kapt(libs.room.compiler.kapt)
+    ksp(libs.moshi.kotlin.codegen.kapt)
+    ksp(libs.room.compiler.kapt)
     kapt(libs.lifecycle.common.java8.kapt)
 
 

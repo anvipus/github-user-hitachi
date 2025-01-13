@@ -269,10 +269,10 @@ object Helpers {
                         } else {
                             if (!isIPv4) {
                                 val delim = sAddr.indexOf('%') // drop ip6 zone suffix
-                                return if (delim < 0) sAddr.toUpperCase() else sAddr.substring(
-                                    0,
-                                    delim
-                                ).toUpperCase()
+                                return if (delim < 0) sAddr.uppercase(Locale.getDefault()) else sAddr.substring(
+                                                                0,
+                                                                delim
+                                                            ).uppercase(Locale.getDefault())
                             }
                         }
                     }
