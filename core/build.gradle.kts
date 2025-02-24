@@ -105,8 +105,14 @@ dependencies {
     api(libs.androidx.material3)
     api(libs.androidx.ui.tooling.preview)
     api(libs.androidx.ui)
+    api(libs.androidx.compose.material)
+    api(libs.androidx.compose.material.icon)
     api(libs.androidx.ui.graphics)
-    api(libs.androidx.constraintlayout.compose)
+    api(libs.androidx.constraint.compose)
+    api(libs.navigation.compose)
+    api(libs.accompanist.flowlayout)
+    api(libs.accompanist.permissions)
+    api(libs.lottie.compose)
 
     //retrofit
     api(libs.retrofit)
