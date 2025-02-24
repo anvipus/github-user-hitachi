@@ -170,6 +170,11 @@ dependencies {
     api(libs.play.services.location)
     api(libs.play.services.auth.api.phone)
 
+    //glance
+    api(libs.androidx.glance)
+    api(libs.androidx.glance.appwidget)
+    api(libs.androidx.glance.material3)
+
     //chucker
     debugApi(libs.chucker.debug)
     releaseApi(libs.chucker.release)
