@@ -100,8 +100,9 @@ dependencies {
     api(libs.firebase.appcheck.ktx)
 
     //compose
-    api(libs.androidx.activity.compose)
+
     api(platform(libs.androidx.compose.bom))
+    api(libs.androidx.activity.compose)
     api(libs.androidx.material3)
     api(libs.androidx.ui.tooling.preview)
     api(libs.androidx.ui)
@@ -113,6 +114,7 @@ dependencies {
     api(libs.accompanist.flowlayout)
     api(libs.accompanist.permissions)
     api(libs.lottie.compose)
+    api(libs.androidx.lifecycle.viewmodel.compose)
 
     //retrofit
     api(libs.retrofit)
@@ -140,6 +142,8 @@ dependencies {
     api(libs.dagger)
     api(libs.dagger.android)
     api(libs.dagger.android.support)
+    api(libs.dagger.hilt)
+    kapt(libs.dagger.hilt.kapt)
 
     //room
     api(libs.room)
