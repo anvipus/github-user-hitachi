@@ -10,10 +10,10 @@ import com.anvipus.core.models.Users
 @Dao
 interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertBanner(list: List<Users>)
+    fun insertUsers(list: List<Users>)
 
     @Query("SELECT * FROM Users")
-    fun getBanners(): LiveData<List<Users>>
+    fun getUsers(): LiveData<List<Users>>
 
     @Query("DELETE FROM users")
     fun deleteAll()
