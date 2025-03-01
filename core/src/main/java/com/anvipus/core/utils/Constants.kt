@@ -127,5 +127,7 @@ class Constants {
         const val TYPE_PREPAID = "prepaid"
         const val TYPE_POSTPAID = "postpaid"
 
+        const val BEARER = "Bearer "
+
     }
 }

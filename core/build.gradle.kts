@@ -88,6 +88,7 @@ dependencies {
     api(libs.recycler.view)
     api(libs.viewpager)
     api(libs.androidx.constraint)
+    api(libs.kotlinx.coroutines.android)
 
     // firebase
     api(platform(libs.firebase.bom))

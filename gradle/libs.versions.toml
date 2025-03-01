@@ -5,9 +5,9 @@ coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.8.7"
-lifecycle = "2.8.7"
-lifecycle-viewmodel-compose = "2.8.7"
+lifecycleRuntimeKtx = "2.5.1"
+lifecycle = "2.5.1"
+lifecycle-viewmodel-compose = "2.5.1"
 activityCompose = "1.10.0"
 composeBom = "2025.02.00"
 appcompat = "1.7.0"
@@ -56,6 +56,7 @@ version-name = "1.0.0"
 accompanist-flowlayout = "0.17.0"
 accompanist-permissions = "0.19.0"
 lottie-compose = "6.6.0"
+kotlinx-coroutines-android = "1.10.1"
 
 
 [libraries]
@@ -67,6 +68,7 @@ androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecyc
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-lifecycle-common-java8 = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifecycle" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinx-coroutines-android" }
 
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }

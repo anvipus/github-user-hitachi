@@ -38,18 +38,15 @@ android {
         debug {
             val KUNCI_GARAM: String by project
             val BASE_URL: String by project
-            val API_KEY: String by project
             isMinifyEnabled = false
             buildConfigField("String", "KUNCI_GARAM", KUNCI_GARAM)
             buildConfigField("String", "BASE_URL", BASE_URL)
-            buildConfigField("String", "API_KEY", API_KEY)
             resValue("string", "app_name_config", "DEV Android Explore")
             signingConfig = signingConfigs.getByName("config")
         }
         release {
             val KUNCI_GARAM: String by project
             val BASE_URL: String by project
-            val API_KEY: String by project
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -57,7 +54,6 @@ android {
             )
             buildConfigField("String", "BASE_URL", BASE_URL)
             buildConfigField("String", "KUNCI_GARAM", KUNCI_GARAM)
-            buildConfigField("String", "API_KEY", API_KEY)
             resValue("string", "app_name_config", "Android Explore")
             signingConfig = signingConfigs.getByName("config")
         }
