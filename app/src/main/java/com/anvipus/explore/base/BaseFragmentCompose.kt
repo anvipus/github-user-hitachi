@@ -20,6 +20,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
@@ -27,12 +28,17 @@ import com.anvipus.core.R
 import com.anvipus.core.utils.*
 import com.anvipus.explore.ui.xml.MainActivity
 
-abstract class BaseFragmentCompose: Fragment() {
+abstract class BaseComposeFragment: Fragment() {
+
+    private var mProgressDialog: ProgressDialog? = null
+
 
     protected open val showToolbar: Boolean = true
     protected open val headTitle: Int = 0
     protected open val statusBarColor: Int? = null
     protected open val showToolbarLogo: Boolean = false
+
+    protected lateinit var defaultLifecycleObserver: DefaultLifecycleObserver
 
     private val main: MainActivity? by lazy {
         requireActivity() as? MainActivity
@@ -107,17 +113,7 @@ abstract class BaseFragmentCompose: Fragment() {
     protected fun initStatusBar(color: Int?) {
         if (Build.VERSION.SDK_INT >= 21) {
             val window = requireActivity().window
-            if (showToolbar.not()) {
-                setWindowFlag()
-                window.addFlags(
-                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-                )
-            } else {
-                window.run {
-                    addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                    clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-                }
-            }
+
             window.statusBarColor = if (color != null) {
                 setStatusBarAppearance(window, isLightStatusBar = true)
                 requireContext().resColor(color)
@@ -191,17 +187,38 @@ abstract class BaseFragmentCompose: Fragment() {
         false
     }
 
-    fun openQRImageFromGallery(
-        activityResultListener: ActivityResultListener
-    ): ActivityResultLauncher<Intent> {
-        val listener: ActivityResultListener = activityResultListener
-        return registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-                listener.onSuccessGetResult(data)
-            } else {
-                listener.onCancel()
+    protected fun showProgress(isShown: Boolean, isCancelable: Boolean = true, isTransaction: Boolean = false) {
+        if (isShown) {
+            startProgress(isCancelable, isTransaction)
+        } else {
+            stopProgress()
+        }
+    }
+
+    private fun startProgress(isCancelable: Boolean, isTransaction: Boolean) {
+        try {
+            if (mProgressDialog != null) {
+                mProgressDialog?.dismiss()
+                mProgressDialog = null
             }
+            mProgressDialog = ProgressDialog.newInstance(
+                isCancelable = isCancelable, hasNavController = true, isTransaction = isTransaction
+            )
+            mProgressDialog!!.show(childFragmentManager, ProgressDialog.TAG)
+            mProgressDialog!!.isCancelable = false
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun stopProgress() {
+        try {
+            if (mProgressDialog != null) {
+                mProgressDialog!!.dismiss()
+                mProgressDialog = null
+            }
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
         }
     }
 

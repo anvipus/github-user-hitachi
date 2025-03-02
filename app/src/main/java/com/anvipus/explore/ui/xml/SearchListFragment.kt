@@ -13,6 +13,8 @@ import com.anvipus.core.models.Status
 import com.anvipus.core.utils.SimpleDividerItemDecoration
 import com.anvipus.core.utils.closeKeyboard
 import com.anvipus.core.utils.hide
+import com.anvipus.core.utils.openBottomSheetWithAnimation
+import com.anvipus.core.utils.openTimeoutBottomSheet
 import com.anvipus.core.utils.show
 import com.anvipus.core.utils.showIf
 import com.anvipus.explore.base.BaseFragment
@@ -44,6 +46,7 @@ class SearchListFragment : BaseFragment(), Injectable {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModelMain: MainViewModel by activityViewModels { viewModelFactory }
+    private var userName: String? = null
 
     private var mAdapter: ItemListAdapter? = null
 
@@ -54,6 +57,7 @@ class SearchListFragment : BaseFragment(), Injectable {
             with(viewModelMain){
                 rvUser.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 mAdapter = ItemListAdapter(requireContext(),rvUser, itemClickCallback = {data ->
+                    userName = data.login!!
                     getDetailUsers(data.login!!)
                 })
                 val divider = SimpleDividerItemDecoration(requireContext())
@@ -114,6 +118,33 @@ class SearchListFragment : BaseFragment(), Injectable {
                 getString(com.anvipus.explore.R.string.message_no_data_default)
         }
 
+    }
+
+    override fun initObserver() {
+        super.initObserver()
+        with(viewModelMain) {
+            detalUsersResult.observe(viewLifecycleOwner){
+                showProgress(isShown = it?.status == Status.LOADING, isCancelable = false)
+                if (it?.status == Status.SUCCESS) {
+                    if (navController().currentDestination?.id == com.anvipus.explore.R.id.fragment_search) {
+                        removeDetalUsersObserve()
+                        navigate(SearchListFragmentDirections.actionToDetailCompose(it.data!!))
+                    }
+
+                }
+                if (it?.status == Status.ERROR) {
+                    openBottomSheetWithAnimation(
+                        title = getString(com.anvipus.explore.R.string.lbl_perhatian),
+                        message = it.msg.toString()
+                    ) {}
+                }
+                if (it?.status == Status.TIMEOUT) {
+                    openTimeoutBottomSheet {
+                        getDetailUsers(userName!!)
+                    }
+                }
+            }
+        }
     }
 
 }

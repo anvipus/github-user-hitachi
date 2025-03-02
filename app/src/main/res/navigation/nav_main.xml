@@ -14,6 +14,10 @@
             app:destination="@id/fragment_user_detail"
             app:popUpTo="@id/fragment_main"/>
         <action
+            android:id="@+id/action_to_detail_compose"
+            app:destination="@id/fragment_user_detail_compose"
+            app:popUpTo="@id/fragment_main"/>
+        <action
             android:id="@+id/action_to_search"
             app:destination="@id/fragment_search"
             app:popUpTo="@id/fragment_main"/>
@@ -28,6 +32,14 @@
             app:argType="com.anvipus.core.models.UserDetail"/>
     </fragment>
     <fragment
+        android:id="@+id/fragment_user_detail_compose"
+        android:name="com.anvipus.explore.ui.compose.UserDetailComposeFragment"
+        android:label="">
+        <argument
+            android:name="data"
+            app:argType="com.anvipus.core.models.UserDetail"/>
+    </fragment>
+    <fragment
         android:id="@+id/fragment_search"
         android:name="com.anvipus.explore.ui.xml.SearchListFragment"
         android:label=""
@@ -35,6 +47,9 @@
         <argument
             android:name="data"
             app:argType="com.anvipus.core.models.UsersListData"/>
-
+        <action
+            android:id="@+id/action_to_detail_compose"
+            app:destination="@id/fragment_user_detail_compose"
+            app:popUpTo="@id/fragment_main"/>
     </fragment>
 </navigation>

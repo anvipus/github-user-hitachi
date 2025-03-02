@@ -116,6 +116,7 @@ dependencies {
     api(libs.accompanist.permissions)
     api(libs.lottie.compose)
     api(libs.androidx.lifecycle.viewmodel.compose)
+    api(libs.coil.compose)
 
     //retrofit
     api(libs.retrofit)

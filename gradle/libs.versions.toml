@@ -57,6 +57,7 @@ accompanist-flowlayout = "0.17.0"
 accompanist-permissions = "0.19.0"
 lottie-compose = "6.6.0"
 kotlinx-coroutines-android = "1.10.1"
+coil-compose = "2.4.0"
 
 
 [libraries]
@@ -80,6 +81,7 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose" }
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle-viewmodel-compose" }
+coil_compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil-compose" }
 
 androidx-glance = { module = "androidx.glance:glance", version.ref = "androidx-glance" }
 androidx-glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = "androidx-glance" }

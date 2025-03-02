@@ -78,7 +78,6 @@ class MainFragment : BaseFragment(), Injectable {
         ownTitle(getString(R.string.app_name))
         with(mBinding){
             with(viewModelMain){
-
                 listUsersCopy.clear()
                 rvUser.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 mAdapter = ItemListAdapter(requireContext(),rvUser, itemClickCallback = {data ->
@@ -113,7 +112,7 @@ class MainFragment : BaseFragment(), Injectable {
                 if (it?.status == Status.SUCCESS) {
                     if (navController().currentDestination?.id == com.anvipus.explore.R.id.fragment_main) {
                         removeDetalUsersObserve()
-                        navigate(MainFragmentDirections.actionToDetail(it.data!!))
+                        navigate(MainFragmentDirections.actionToDetailCompose(it.data!!))
                     }
 
                 }
