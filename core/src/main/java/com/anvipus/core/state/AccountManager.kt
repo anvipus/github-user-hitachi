@@ -1,4 +1,4 @@
-package com.dpv.osa.utils.state
+package com.anvipus.core.utils.state
 
 import android.content.Context
 

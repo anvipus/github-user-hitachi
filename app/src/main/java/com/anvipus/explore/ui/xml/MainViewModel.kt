@@ -10,10 +10,15 @@ import com.anvipus.core.utils.AbsentLiveData
 import javax.inject.Inject
 import com.anvipus.explore.repo.GeneralRepo
 import androidx.lifecycle.switchMap
+import com.anvipus.explore.db.AppDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class MainViewModel @Inject constructor(private val repo: GeneralRepo) : ViewModel() {
+class MainViewModel @Inject constructor(private val repo: GeneralRepo,
+                                        private val db: AppDatabase
+) : ViewModel() {
     private val usersTrigger = MutableLiveData<Int>()
-    private val usersDetailTrigger = MutableLiveData<String>()
+    private val usersDetailTrigger = MutableLiveData<String?>()
 
     val listUsersResult: LiveData<Resource<List<Users>>> = usersTrigger.switchMap { since ->
         if(since == null) AbsentLiveData.create()
@@ -29,5 +34,19 @@ class MainViewModel @Inject constructor(private val repo: GeneralRepo) : ViewMod
 
     fun getDetailUsers(username : String){
         usersDetailTrigger.value = username
+    }
+    fun removeDetalUsersObserve() {
+        usersDetailTrigger.value = null
+    }
+
+    suspend fun getListUserFromDb(): List<Users>?{
+        return withContext(Dispatchers.IO) {
+            try {
+                db.usersDao().getListUsers()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                null
+            }
+        }
     }
 }

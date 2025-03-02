@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-        <!--<include
+        <include
             android:id="@+id/layout_toolbar_child"
             layout="@layout/toolbar_white_child"
             android:visibility="visible"/>
@@ -98,7 +98,7 @@
 
             </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

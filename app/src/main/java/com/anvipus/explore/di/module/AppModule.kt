@@ -1,11 +1,11 @@
 package com.anvipus.explore.di.module
 
 import android.app.Application
+import com.anvipus.core.utils.state.AccountManager
 import com.anvipus.explore.BuildConfig
 import com.anvipus.explore.api.GeneralApi
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.dpv.osa.utils.state.AccountManager
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

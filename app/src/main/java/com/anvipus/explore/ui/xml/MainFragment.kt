@@ -1,5 +1,6 @@
 package com.anvipus.explore.ui.xml
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.Handler
@@ -9,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anvipus.core.R
 import com.anvipus.core.models.Status
@@ -24,6 +27,9 @@ import com.anvipus.explore.base.BaseFragment
 import com.anvipus.explore.databinding.MainFragmentBinding
 import com.bumptech.glide.Glide
 import com.codedisruptors.dabestofme.di.Injectable
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainFragment : BaseFragment(), Injectable {
@@ -52,6 +58,17 @@ class MainFragment : BaseFragment(), Injectable {
     private var nextId = 0
     private val listUsersCopy: MutableList<Users> = ArrayList()
     private var mAdapter: ItemListAdapter? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        defaultLifecycleObserver = object : DefaultLifecycleObserver {
+            override fun onResume(owner: LifecycleOwner) {
+                super.onResume(owner)
+                ownTitle(getString(R.string.app_name))
+            }
+        }
+        lifecycle.addObserver(defaultLifecycleObserver)
+    }
 
     override fun initView(view: View) {
         super.initView(view)
@@ -92,9 +109,10 @@ class MainFragment : BaseFragment(), Injectable {
             detalUsersResult.observe(viewLifecycleOwner){
                 showProgress(isShown = it?.status == Status.LOADING, isCancelable = false)
                 if (it?.status == Status.SUCCESS) {
-                    /*if (navController().currentDestination?.id == R.id.fragment_main) {
-                        navController().navigate(MainFragmentDirections.actionToDetail(it.data!!))
-                    }*/
+                    if (navController().currentDestination?.id == com.anvipus.explore.R.id.fragment_main) {
+                        removeDetalUsersObserve()
+                        navigate(MainFragmentDirections.actionToDetail(it.data!!))
+                    }
 
                 }
                 if (it?.status == Status.ERROR) {
@@ -152,21 +170,6 @@ class MainFragment : BaseFragment(), Injectable {
                     mBinding.progressBar.visibility = View.GONE
                 }
             }
-            mAdapter!!.setOnLoadMoreListener(null)
-            mAdapter!!.setOnLoadMoreListener(object : OnLoadMoreListener {
-                override fun onLoadMore() {
-                    if (nextId > 0) {
-                        mBinding.progressBar.show()
-                    }
-                    val handler = Handler(Looper.getMainLooper())
-                    handler.postDelayed({
-                        if (nextId > 0) {
-                            getListUsers(nextId)
-                            mAdapter!!.setLoaded()
-                        }
-                    }, 1000)
-                }
-            })
         }
     }
 

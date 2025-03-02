@@ -42,13 +42,13 @@ class GeneralRepo @Inject constructor(
             }
         }
         override fun shouldFetch(data: List<Users>?): Boolean {
-            return true
+            return false
         }
         override fun loadFromDb(): LiveData<List<Users>> = db.usersDao().getUsers()
         override fun createCall(): Call<List<Users>> {
             val params = HashMap<String, String>()
             params["since"] = since.toString()
-            params["per_page"] = "30"
+            params["per_page"] = "50"
             return api.getListUser(accessToken = Constants.BEARER + "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", params = params)
         }
 
