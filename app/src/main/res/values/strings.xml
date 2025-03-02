@@ -1,3 +1,10 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Github User</string>
+    <string name="label_warning">Warning</string>
+    <string name="label_setting_permission">Please go to settings and allow all permissions to continue using this app</string>
+    <string name="action_ok_bottom_sheet" tools:ignore="ButtonCase,Typos">Ok</string>
+    <string name="title_no_data_default">Belum Ada Data</string>
+    <string name="history_error_no_data_title">Belum Ada Data</string>
+    <string name="message_no_data_default">Belum Ada Data</string>
+    <string name="lbl_perhatian">Perhatian</string>
 </resources>

@@ -15,4 +15,12 @@
     <string name="placeholder_total_motionpoints">MotionPoints %s</string>
     <string name="placeholder_total_payment">-%s</string>
     <string name="placeholder_action_total_payment">Bayar %s</string>
+
+    <string name="label_error_warning">Perhatian</string>
+    <string name="lbl_cards_17">Tutup</string>
+    <string name="lbl_current_point_desc_64">Gagal memuat data</string>
+    <string name="lbl_current_point_desc_65">Kamu tidak perlu khawatir, Tunggu beberapa saat dan coba lagi</string>
+
+    <string name="coba_lagi">Coba Lagi</string>
+    <string name="kembali">Kembali</string>
 </resources>

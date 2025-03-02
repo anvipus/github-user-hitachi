@@ -27,7 +27,7 @@ class MainViewModel @Inject constructor(private val repo: GeneralRepo) : ViewMod
         usersTrigger.value = since
     }
 
-    fun getDetaulUsers(username : String){
+    fun getDetailUsers(username : String){
         usersDetailTrigger.value = username
     }
 }

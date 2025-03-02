@@ -20,7 +20,7 @@ class GeneralRepo @Inject constructor(
     fun getDetailUser(username:String): LiveData<Resource<UserDetail>> = object : ApiCall<UserDetail, UserDetail>(){
         override fun createCall(): Call<UserDetail> {
 
-            return api.getDetailUser(accessToken = Constants.BEARER + "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", username = username)
+            return api.getDetailUser(accessToken = Constants.BEARER + "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", username = username)
         }
     }.asLiveData()
 
@@ -49,7 +49,7 @@ class GeneralRepo @Inject constructor(
             val params = HashMap<String, String>()
             params["since"] = since.toString()
             params["per_page"] = "30"
-            return api.getListUser(accessToken = Constants.BEARER + "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", params = params)
+            return api.getListUser(accessToken = Constants.BEARER + "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", params = params)
         }
 
     }.asLiveData()

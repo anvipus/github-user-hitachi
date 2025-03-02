@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="30dp"
+        android:clipToPadding="false"
+        android:background="@drawable/bg_bottom_sheet_rounded_white_24">
+
+        <ImageView
+            android:id="@+id/iv_swipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/blank"
+            app:srcCompat="@drawable/ic_swipe_v2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/animation_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/ic_no_data_available"
+            app:layout_constraintTop_toBottomOf="@id/iv_swipe"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription"
+            />
+
+        <TextView
+            android:id="@+id/tv_failed_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="42dp"
+            android:text="@string/lbl_current_point_desc_64"
+            android:textColor="@color/colorGondola"
+            android:textAlignment="center"
+            android:fontFamily="@font/inter_semibold"
+            app:layout_constraintTop_toBottomOf="@id/animation_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_failed_desc_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="42dp"
+            android:text="@string/lbl_current_point_desc_65"
+            android:textColor="@color/colorDimGray"
+            android:textAlignment="center"
+            android:fontFamily="@font/inter_regular"
+            app:layout_constraintTop_toBottomOf="@id/tv_failed_desc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <Button
+            android:id="@+id/btn_retry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="37dp"
+            android:layout_marginHorizontal="20dp"
+            android:text="@string/coba_lagi"
+            android:textColor="@color/colorWhite"
+            android:textAllCaps="false"
+            android:fontFamily="@font/inter_heavy"
+            android:background="@drawable/btn_rounded_light_sky_blue"
+            app:layout_constraintTop_toBottomOf="@id/tv_failed_desc_2"
+            app:layout_constraintBottom_toTopOf="@id/btn_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@string/kembali"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/btn_retry"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/btn_retry"
+            app:layout_constraintEnd_toEndOf="@id/btn_retry"
+            tools:visibility="visible"
+            style="@style/ButtonWhiteBorderBlue"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
