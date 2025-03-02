@@ -49,4 +49,6 @@ class MainViewModel @Inject constructor(private val repo: GeneralRepo,
             }
         }
     }
+
+    fun searchUsers(query: String) = repo.searchUser(query)
 }

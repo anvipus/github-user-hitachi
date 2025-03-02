@@ -5,11 +5,16 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anvipus.core.R
 import com.anvipus.core.models.Status
+import com.anvipus.core.utils.SimpleDividerItemDecoration
 import com.anvipus.core.utils.closeKeyboard
+import com.anvipus.core.utils.hide
+import com.anvipus.core.utils.show
+import com.anvipus.core.utils.showIf
 import com.anvipus.explore.base.BaseFragment
 import com.anvipus.explore.databinding.MainFragmentBinding
 import com.anvipus.explore.databinding.SearchListFragmentBinding
@@ -34,47 +39,81 @@ class SearchListFragment : BaseFragment(), Injectable {
 
     override val showToolbar: Boolean get() = false
     private lateinit var mBinding: SearchListFragmentBinding
+    private val params by navArgs<SearchListFragmentArgs>()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModelMain: MainViewModel by activityViewModels { viewModelFactory }
 
+    private var mAdapter: ItemListAdapter? = null
+
     override fun initView(view: View) {
         super.initView(view)
         mBinding = SearchListFragmentBinding.bind(view)
-        /*with(mBinding) {
+        with(mBinding) {
             with(viewModelMain){
-                with(rvUser){
-                    layoutManager =  GridLayoutManager(context, 2)
-                    //adapter = mAdapter2
-                    clipToPadding = false
+                rvUser.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                mAdapter = ItemListAdapter(requireContext(),rvUser, itemClickCallback = {data ->
+                    getDetailUsers(data.login!!)
+                })
+                val divider = SimpleDividerItemDecoration(requireContext())
+                rvUser.apply {
+                    adapter = mAdapter
+                    setHasFixedSize(true)
+                    addItemDecoration(divider)
                 }
+                mBinding.shimmerNotificationAndMessage.stopShimmer()
+                mBinding.shimmerNotificationAndMessage.hide()
+                mBinding.layoutContent.show()
+                mAdapter!!.submitList(params.data.userList)
             }
-        }*/
+        }
     }
 
     override fun setupListener() {
         super.setupListener()
         with(mBinding){
-
-            /*layoutToolbarChild.etSearch.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-                override fun afterTextChanged(s: Editable?) {
-                    with(viewModelMain){
-                        if(s.toString().isEmpty().not()){
-
-                        }else{
-
+            with(viewModelMain){
+                layoutToolbarChild.etSearch.addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+                    override fun afterTextChanged(s: Editable?) {
+                        with(viewModelMain){
+                            if(s.toString().isEmpty().not()){
+                                searchUsers(s.toString()).observe(viewLifecycleOwner){
+                                    if(it?.status == Status.SUCCESS) {
+                                        mBinding.shimmerNotificationAndMessage.stopShimmer()
+                                        mBinding.shimmerNotificationAndMessage.hide()
+                                        mBinding.layoutContent.show()
+                                        mAdapter!!.submitList(it.data?.items)
+                                        showNoData(it.data?.items?.size == 0)
+                                    }
+                                }
+                            }
                         }
-                    }
 
+                    }
+                })
+                layoutToolbarChild.toolbar.setNavigationOnClickListener {
+                    navController().navigateUp()
                 }
-            })
-            layoutToolbarChild.toolbar.setNavigationOnClickListener {
-                navController().navigateUp()
-            }*/
+            }
+
         }
+    }
+
+    private fun showNoData(isShown: Boolean) {
+        with(mBinding) {
+            if(isShown){
+                layoutContent.hide(1)
+            }
+            layoutNoData.layoutParentNoData.showIf(isShown)
+            layoutNoData.tvErrorNoDataTitle.text =
+                getString(com.anvipus.explore.R.string.history_error_no_data_title)
+            layoutNoData.tvErrorNoDataDescription.text =
+                getString(com.anvipus.explore.R.string.message_no_data_default)
+        }
+
     }
 
 }

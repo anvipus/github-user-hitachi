@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.anvipus.core.R
 import com.anvipus.core.models.Status
 import com.anvipus.core.models.Users
+import com.anvipus.core.models.UsersListData
 import com.anvipus.core.utils.OnLoadMoreListener
 import com.anvipus.core.utils.SimpleDividerItemDecoration
 import com.anvipus.core.utils.hide
@@ -93,7 +94,8 @@ class MainFragment : BaseFragment(), Injectable {
                 getListUsers(0)
                 ownMenu(com.anvipus.explore.R.menu.search_menu) {
                     if (it.itemId == com.anvipus.explore.R.id.searchItem) {
-                        //navigate(MainFragmentDirections.actionToSearch())
+                        val userListData = UsersListData(userList = listUsersCopy)
+                        navigate(MainFragmentDirections.actionToSearch(userListData))
                     }
                 }
             }

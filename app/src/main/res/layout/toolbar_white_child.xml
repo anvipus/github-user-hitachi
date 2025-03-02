@@ -66,7 +66,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/iv_icon_search"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:hint="Search"
+                    android:hint="Cari User"
                     />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.anvipus.explore.api
 
+import com.anvipus.core.models.SearchUserListData
 import com.anvipus.core.models.UserDetail
 import com.anvipus.core.models.Users
 import retrofit2.Call
@@ -20,4 +21,10 @@ interface GeneralApi {
         @Header("Authorization") accessToken: String,
         @Path("username") username: String
     ): Call<UserDetail>
+
+    @GET("search/users")
+    fun getSearchUsers(
+        @Header("Authorization") accessToken: String,
+        @QueryMap params: Map<String, String>
+    ): Call<SearchUserListData>
 }

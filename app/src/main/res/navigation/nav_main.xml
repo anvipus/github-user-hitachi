@@ -13,6 +13,10 @@
             android:id="@+id/action_to_detail"
             app:destination="@id/fragment_user_detail"
             app:popUpTo="@id/fragment_main"/>
+        <action
+            android:id="@+id/action_to_search"
+            app:destination="@id/fragment_search"
+            app:popUpTo="@id/fragment_main"/>
     </fragment>
     <fragment
         android:id="@+id/fragment_user_detail"
@@ -22,5 +26,15 @@
         <argument
             android:name="data"
             app:argType="com.anvipus.core.models.UserDetail"/>
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_search"
+        android:name="com.anvipus.explore.ui.xml.SearchListFragment"
+        android:label=""
+        tools:layout="@layout/search_list_fragment">
+        <argument
+            android:name="data"
+            app:argType="com.anvipus.core.models.UsersListData"/>
+
     </fragment>
 </navigation>

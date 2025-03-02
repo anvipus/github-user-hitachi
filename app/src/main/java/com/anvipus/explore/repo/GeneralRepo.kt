@@ -5,9 +5,11 @@ import com.anvipus.core.api.ApiCall
 import com.anvipus.core.api.DataBoundSource
 import com.anvipus.core.models.ApiResponse
 import com.anvipus.core.models.Resource
+import com.anvipus.core.models.SearchUserListData
 import com.anvipus.core.models.UserDetail
 import com.anvipus.core.models.Users
 import com.anvipus.core.utils.Constants
+import com.anvipus.explore.BuildConfig
 import com.anvipus.explore.api.GeneralApi
 import com.anvipus.explore.db.AppDatabase
 import retrofit2.Call
@@ -42,7 +44,7 @@ class GeneralRepo @Inject constructor(
             }
         }
         override fun shouldFetch(data: List<Users>?): Boolean {
-            return false
+            return true
         }
         override fun loadFromDb(): LiveData<List<Users>> = db.usersDao().getUsers()
         override fun createCall(): Call<List<Users>> {
@@ -55,4 +57,11 @@ class GeneralRepo @Inject constructor(
     }.asLiveData()
 
 
+    fun searchUser(query: String): LiveData<Resource<SearchUserListData>> = object : ApiCall<SearchUserListData, SearchUserListData>(){
+        override fun createCall(): Call<SearchUserListData> {
+            val bodyParam = HashMap<String, String>()
+            bodyParam["q"] = query
+            return api.getSearchUsers( accessToken = Constants.BEARER + "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", params = bodyParam)
+        }
+    }.asLiveData()
 }

@@ -69,6 +69,20 @@ data class Users(
 
 @JsonClass(generateAdapter = true)
 @Parcelize
+data class UsersListData (
+    @Json(name = "user_list")
+    val userList: List<Users>
+) : Parcelable
+
+@JsonClass(generateAdapter = true)
+@Parcelize
+data class SearchUserListData (
+    @Json(name = "items")
+    val items: List<Users>
+) : Parcelable
+
+@JsonClass(generateAdapter = true)
+@Parcelize
 data class UserDetail(
     @Json(name = "login")
     val login: String?,
