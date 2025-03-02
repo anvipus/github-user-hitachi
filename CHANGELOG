@@ -4,6 +4,7 @@ Project ini di build dengan menggunakan Android Studio Ladybug Feature Drop | 20
 Build #AI-242.23726.103.2422.13103373, built on February 22, 2025
 
 Java SDK 21
+minimum android SDK 24
 
 jika belum terdapat java sdk 21, silahkan download, setelah download arahkan settingan project ini ke sdk 21 tersebut
 
